@@ -1,0 +1,4 @@
+include LICENSE README.md README.ru.md CHANGELOG.md CONTRIBUTING.md SECURITY.md
+recursive-include voidsweep/web *
+recursive-include tests *.py
+recursive-include docs *.md *.png

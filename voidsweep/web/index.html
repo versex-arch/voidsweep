@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Voidsweep</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <img src="icon.svg" alt="" width="26" height="26">
+      <span class="wordmark">voidsweep</span>
+    </div>
+    <nav class="tabs" aria-label="Sections">
+      <button class="tab is-on" data-view="clean" data-i18n="nav.clean"></button>
+      <button class="tab" data-view="markers" data-i18n="nav.markers"></button>
+      <button class="tab" data-view="history" data-i18n="nav.history"></button>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button data-lang="ru">RU</button><button data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Start / scanning -->
+    <section class="view" id="view-start">
+      <div class="start">
+        <div class="orb-wrap">
+          <svg class="orb" id="orb" viewBox="0 0 320 320" aria-hidden="true"></svg>
+          <div class="orb-center">
+            <div class="orb-value" id="orb-value">0</div>
+            <div class="orb-label" id="orb-label"></div>
+          </div>
+        </div>
+        <div class="start-copy">
+          <h1 data-i18n="start.title"></h1>
+          <p class="lede" data-i18n="start.lede"></p>
+          <div class="drives" id="drives"></div>
+          <label class="switch">
+            <input type="checkbox" id="deep" checked>
+            <span class="track"><span class="thumb"></span></span>
+            <span><b data-i18n="start.deep"></b><small data-i18n="start.deepHint"></small></span>
+          </label>
+          <div class="start-actions">
+            <button class="btn primary big" id="scan-btn" data-i18n="start.scan"></button>
+            <button class="btn ghost" id="cancel-btn" hidden data-i18n="start.cancel"></button>
+          </div>
+          <p class="scan-path" id="scan-path" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section class="view" id="view-results" hidden>
+      <div class="results">
+        <div class="list-col">
+          <div class="toolbar">
+            <div class="summary" id="summary"></div>
+            <div class="filters">
+              <input type="search" id="search" data-i18n-placeholder="results.search">
+              <div class="seg" id="risk-filter" role="group">
+                <button data-risk="all" class="is-on" data-i18n="risk.all"></button>
+                <button data-risk="safe" data-i18n="risk.safe"></button>
+                <button data-risk="review" data-i18n="risk.review"></button>
+                <button data-risk="caution" data-i18n="risk.caution"></button>
+              </div>
+            </div>
+            <div class="bulk">
+              <button class="link" id="sel-rec" data-i18n="results.selectRecommended"></button>
+              <button class="link" id="sel-none" data-i18n="results.selectNone"></button>
+              <button class="link" id="rescan" data-i18n="results.rescan"></button>
+            </div>
+          </div>
+          <div class="groups" id="groups" role="tree"></div>
+        </div>
+        <aside class="detail" id="detail" aria-live="polite"></aside>
+      </div>
+      <footer class="actionbar">
+        <div class="selected" id="selected"></div>
+        <div class="seg mode" id="mode" role="group">
+          <button data-mode="trash" class="is-on" data-i18n="mode.trash"></button>
+          <button data-mode="permanent" data-i18n="mode.permanent"></button>
+        </div>
+        <button class="btn primary" id="clean-btn" data-i18n="results.clean"></button>
+      </footer>
+    </section>
+
+    <section class="view" id="view-markers" hidden>
+      <div class="page">
+        <h2 data-i18n="markers.title"></h2>
+        <p class="lede" data-i18n="markers.lede"></p>
+        <div class="marker-table" id="marker-table"></div>
+      </div>
+    </section>
+
+    <section class="view" id="view-history" hidden>
+      <div class="page">
+        <h2 data-i18n="history.title"></h2>
+        <div id="history"></div>
+        <h3 data-i18n="history.ignored"></h3>
+        <div id="ignored"></div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="dialog"></dialog>
+  <div class="toast" id="toast" role="status" hidden></div>
+  <script src="app.js"></script>
+</body>
+</html>
